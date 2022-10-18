@@ -1,0 +1,8 @@
+.editable-textfield
+{
+    border: 1px dashed #000;
+}
+.editable-textfield span
+{
+    margin-left: 10px;
+}
