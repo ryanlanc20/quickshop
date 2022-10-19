@@ -22,7 +22,7 @@ const PriceSelector = (props) => {
                 <span className="input-group-text">£</span>
             </div>
             <input type="number" className="form-control" aria-label="Pounds" value={props.pounds} onChange={updatePounds} pattern="^(0|[1-9]{1}[1-9]*)$"/>
-            <input type="number" className="form-control" aria-label="Pence" value={props.pennies} onChange={updatePennies} pattern="^[0-9]{2}$"/>
+            <input type="number" className="form-control" aria-label="Pence" value={props.pennies} onChange={updatePennies} pattern="^[0-9]{2}$" step="1" min="0" max="99"/>
         </div>
     )
 };

@@ -13,6 +13,11 @@ const ListItem = (props) => {
     const [status,setStatus] = useState(null);
 
     const updatePounds = (pounds) => {
+        if(!WholeNumberValidator(pounds))
+        {
+            setStatus({"type":"wholenumfail"});
+            return;
+        }
         let collection = {...items};
         collection[currentList]["items"][props.id]["pounds"] = parseInt(pounds);
         setItems(collection);
@@ -20,9 +25,15 @@ const ListItem = (props) => {
     };
 
     const updatePennies = (pennies) => {
+        if(!fractionalValidator(pennies))
+        {
+            setStatus({"type":"fractnumfail"});
+            return;
+        }
         let collection = {...items};
         collection[currentList]["items"][props.id]["pennies"] = parseInt(pennies);
         setItems(collection);
+        setStatus(null);
     };
 
     const updateQty = (qty) => {
@@ -32,9 +43,14 @@ const ListItem = (props) => {
     };
 
     const updateName = (name) => {
+        if(itemNameValidator(name))
+        {
+            setStatus({"type":"itemnamefail"});
+        }
         let collection = {...items};
         collection[currentList]["items"][props.id]["itemName"] = name;
         setItems(collection);
+        setStatus(null);
     }
 
     return(
