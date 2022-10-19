@@ -42,6 +42,7 @@ const ShoppingList = (props) => {
                         <th>Item name</th>
                         <th>Item price</th>
                         <th>Item Qty.</th>
+                        <th>Options</th>
                         </tr>
                     </thead>
                     <tbody>

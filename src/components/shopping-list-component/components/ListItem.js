@@ -6,6 +6,7 @@ import {useContext,useState} from "react";
 import WholeNumberValidator from "../../../validators/WholeNumberValidator.js";
 import fractionalValidator from "../../../validators/FractionalValidator.js";
 import itemNameValidator from "../../../validators/ItemNameValidator.js";
+import DeleteButton from "./DeleteButton.js";
 
 const ListItem = (props) => {
     const [items,setItems] = useContext(ShoppingListContext);
@@ -53,11 +54,18 @@ const ListItem = (props) => {
         setStatus(null);
     }
 
+    const deleteItem = () => {
+        let collection = {...items};
+        delete collection[currentList]["items"][props.id];
+        setItems(collection);
+    }
+
     return(
         <tr className={status ? "alert-danger" : ""}>
             <td><EditableTextField text={props.itemName} id={props.id} updateCallback={updateName}/></td>
             <td><PriceSelector pounds={props.pounds} pennies={props.pennies} changePounds={updatePounds} changePennies={updatePennies}/></td>
             <td><QuantityEditor qty={props.qty} updateCallback={updateQty}/></td>
+            <td><DeleteButton deleteCallback={deleteItem}></DeleteButton></td>
         </tr>
     );
 };
