@@ -13,26 +13,26 @@ const ListItem = (props) => {
     const [currentList,] = useContext(CurrentListContext);
     const [status,setStatus] = useState(null);
 
-    const updatePounds = (pounds) => {
-        if(!WholeNumberValidator(pounds))
+    const updateFirstCurrencyUnit = (firstCurrencyUnit) => {
+        if(!WholeNumberValidator(firstCurrencyUnit))
         {
             setStatus({"type":"wholenumfail"});
             return;
         }
         let collection = {...items};
-        collection[currentList]["items"][props.id]["pounds"] = parseInt(pounds);
+        collection[currentList]["items"][props.id]["firstCurrencyUnit"] = parseInt(firstCurrencyUnit);
         setItems(collection);
         setStatus(null);
     };
 
-    const updatePennies = (pennies) => {
-        if(!fractionalValidator(pennies))
+    const updateSecondCurrencyUnit = (secondCurrencyUnit) => {
+        if(!fractionalValidator(secondCurrencyUnit))
         {
             setStatus({"type":"fractnumfail"});
             return;
         }
         let collection = {...items};
-        collection[currentList]["items"][props.id]["pennies"] = parseInt(pennies);
+        collection[currentList]["items"][props.id]["secondCurrencyUnit"] = parseInt(secondCurrencyUnit);
         setItems(collection);
         setStatus(null);
     };
@@ -63,7 +63,7 @@ const ListItem = (props) => {
     return(
         <tr className={status ? "alert-danger" : ""}>
             <td><EditableTextField text={props.itemName} id={props.id} updateCallback={updateName}/></td>
-            <td><PriceSelector pounds={props.pounds} pennies={props.pennies} changePounds={updatePounds} changePennies={updatePennies}/></td>
+            <td><PriceSelector firstCurrencyUnit={props.firstCurrencyUnit} secondCurrencyUnit={props.secondCurrencyUnit} changeFirstCurrencyUnit={updateFirstCurrencyUnit} changeSecondCurrencyUnit={updateSecondCurrencyUnit}/></td>
             <td><QuantityEditor qty={props.qty} updateCallback={updateQty}/></td>
             <td><DeleteButton deleteCallback={deleteItem}></DeleteButton></td>
         </tr>

@@ -11,7 +11,7 @@ const QuickAdd = () => {
     const createItem = (itemName,itemPricePounds,itemPricePennies) => {
         let numItems = Object.keys(items[currentList]["items"]).length;
         let newCollection = {...items};
-        newCollection[currentList]["items"][numItems] = {id:numItems,itemName:itemName,pounds:itemPricePounds,pennies:itemPricePennies,qty:0};
+        newCollection[currentList]["items"][numItems] = {id:numItems,itemName:itemName,firstCurrencyUnit:itemPricePounds,secondCurrencyUnit:itemPricePennies,qty:0};
         setItems(newCollection);
     };
 
@@ -25,10 +25,10 @@ const QuickAdd = () => {
                     {
                         Object.keys(quickAddItems).map((key) => {
                             return (
-                                <button className="btn btn-secondary ml-2" onClick={() => {createItem(key,quickAddItems[key]["pounds"],quickAddItems[key]["pence"])}}>
+                                <button className="btn btn-secondary ml-2" onClick={() => {createItem(key,quickAddItems[key]["firstCurrencyUnit"],quickAddItems[key]["secondCurrencyUnit"])}}>
                                     {key}
                                     <div className="badge badge-light ml-2">
-                                        £{(quickAddItems[key]["pounds"] + (quickAddItems[key]["pence"]/100)).toFixed(2)}
+                                        £{(quickAddItems[key]["firstCurrencyUnit"] + (quickAddItems[key]["secondCurrencyUnit"]/100)).toFixed(2)}
                                     </div>
                                 </button>
                             )

@@ -10,7 +10,7 @@ const ShoppingList = (props) => {
 
     useEffect(() => {
         setTotalCost(Object.values(items[currentList]["items"]).map((item) => {
-            return Math.round(((item.pounds + (item.pennies/100)) * item.qty)*100) / 100
+            return Math.round(((item.firstCurrencyUnit+ (item.secondCurrencyUnit/100)) * item.qty)*100) / 100
         }).reduce((previous,current) => previous + current,0).toFixed(2))
     },[items,currentList]);
 
@@ -47,7 +47,18 @@ const ShoppingList = (props) => {
                     </thead>
                     <tbody>
                     {
-                        Object.keys(items[currentList]["items"]).map(id => (<ListItem key={items[currentList]["items"][id].id} id={items[currentList]["items"][id].id} itemName={items[currentList]["items"][id].itemName} pounds={items[currentList]["items"][id].pounds} pennies={items[currentList]["items"][id].pennies} qty={items[currentList]["items"][id].qty}/>))
+                        Object.keys(items[currentList]["items"]).map(id => 
+                            (
+                                <ListItem 
+                                    key={items[currentList]["items"][id].id} 
+                                    id={items[currentList]["items"][id].id} 
+                                    itemName={items[currentList]["items"][id].itemName} 
+                                    firstCurrencyUnit={items[currentList]["items"][id].firstCurrencyUnit} 
+                                    secondCurrencyUnit={items[currentList]["items"][id].secondCurrencyUnit} 
+                                    qty={items[currentList]["items"][id].qty}
+                                />
+                            )
+                        )
                     }
                     </tbody>
                 </table>
