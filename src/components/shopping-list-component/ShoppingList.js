@@ -1,18 +1,20 @@
 import ListItem from "./components/ListItem.js";
 import TotalCost from "./components/TotalCost.js";
-import {useContext,useEffect,useState} from "react";
+import {useContext,useMemo} from "react";
 import { ShoppingListContext, CurrentListContext} from "../../App.js";
 
 const ShoppingList = (props) => {
     const [items,] = useContext(ShoppingListContext);
-    const [totalCost,setTotalCost] = useState(0);
     const [currentList,] = useContext(CurrentListContext);
 
-    useEffect(() => {
-        setTotalCost(Object.values(items[currentList]["items"]).map((item) => {
-            return Math.round(((item.firstCurrencyUnit+ (item.secondCurrencyUnit/100)) * item.qty)*100) / 100
-        }).reduce((previous,current) => previous + current,0).toFixed(2))
-    },[items,currentList]);
+    const totalCost = useMemo(
+        () => {
+            return Object.values(items[currentList]["items"]).map((item) => {
+                return Math.round(((item.firstCurrencyUnit+ (item.secondCurrencyUnit/100)) * item.qty)*100) / 100
+            }).reduce((previous,current) => previous + current,0).toFixed(2)
+        },
+        [items,currentList]
+    );
 
     return (
             <div className="container mt-4 mb-4">
