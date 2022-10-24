@@ -33,7 +33,9 @@ const ShoppingList = (props) => {
                             </h5>
                         </div>
                         <div class="col-md-3">
-                        <TotalCost cost={totalCost}/>
+                        <TotalCost
+                            cost={totalCost}
+                        />
                         </div>
                     </div>
                 </div>
@@ -69,7 +71,9 @@ const ShoppingList = (props) => {
                     <div class="row">
                         <div class="col-md-9"></div>
                         <div class="col-md-3">
-                        <TotalCost cost={totalCost}/>
+                        <TotalCost
+                            cost={totalCost}
+                        />
                         </div>
                     </div>
                 </div>

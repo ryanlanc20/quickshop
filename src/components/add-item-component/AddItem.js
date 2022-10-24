@@ -10,22 +10,25 @@ import fractionalValidator from "../../validators/FractionalValidator.js";
 
 const AddItem = (props) => {
     
+    // Status hook for displaying error messages
     const [status,setStatus] = useState(null);
 
     // State hook for item name
     const [itemName,setItemName] = useState("");
 
-    // State hook for GBP
+    // State hook for first currency unit
     const [firstUnitCurrency,setFirstCurrencyUnit] = useState("");
 
-    // State hoot for pennies
+    // State hook for second currency unit
     const [secondUnitCurrency,setSecondCurrencyUnit] = useState("");
 
-    // Callback to create item (called by add button)
+    // Context hook to add item to global storage.
     const [items,setItems] = useContext(ShoppingListContext);
 
+    // Context hook to get current list index (need to make sure we update the selected shopping list)
     const [currentList,] = useContext(CurrentListContext);
 
+    // Context hook to update quick add tags in global storage.
     const [quickAddItems,setQuickAddItems] = useContext(QuickAddListContext);
 
     const addQuickAddItem = (itemName,firstUnitCurrency,secondUnitCurrency) => {
@@ -42,12 +45,12 @@ const AddItem = (props) => {
         }
         if (!WholeNumberValidator(firstUnitCurrency))
         {
-            setStatus({"msg": "Pounds field must contain digits 0-9"})
+            setStatus({"msg": "First currency unit field must contain a whole number."})
             return;
         }
         if (!fractionalValidator(secondUnitCurrency))
         {
-            setStatus({"msg": "Pence field must contain two digits between 0-9"});
+            setStatus({"msg": "Second currency unit field must contain a whole number."});
             return;
         }
         let numItems = Object.keys(items[currentList]["items"]).length;
@@ -76,7 +79,10 @@ const AddItem = (props) => {
                         </div>
                         <div className="row mt-2">
                             <div className="col-md">
-                                <TextField itemNameChanger={setItemName} value={itemName}/>
+                                <TextField
+                                    itemNameChanger={setItemName}
+                                    value={itemName}
+                                />
                             </div>
                         </div>
                         <div className="row mt-2">
@@ -86,12 +92,19 @@ const AddItem = (props) => {
                         </div>
                         <div className="row mt-2">
                             <div className="col-md">
-                                <PriceSelector changeFirstCurrencyUnit={setFirstCurrencyUnit} changeSecondCurrencyUnit={setSecondCurrencyUnit} firstCurrencyUnit={firstUnitCurrency} secondCurrencyUnit={secondUnitCurrency}/>
+                                <PriceSelector
+                                    changeFirstCurrencyUnit={setFirstCurrencyUnit}
+                                    changeSecondCurrencyUnit={setSecondCurrencyUnit}
+                                    firstCurrencyUnit={firstUnitCurrency}
+                                    secondCurrencyUnit={secondUnitCurrency}
+                                />
                             </div>
                         </div>
                         <div className="row mt-4">
                             <div className="col-md">
-                                <AddItemButton createItemCallback={createItem}/>
+                                <AddItemButton
+                                    createItemCallback={createItem}
+                                />
                             </div>
                         </div>
                     </form>

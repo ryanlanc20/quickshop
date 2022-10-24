@@ -15,11 +15,9 @@ export const CurrentListContext = createContext();
 export const QuickAddListContext = createContext();
 
 function App() {
-  // Default Item 0:{id: 0, itemName:"Bread",pounds:1,pennies:10,qty:1}
   const [listItems,setItems] = useState(JSON.parse(sessionStorage.getItem("data"))||{0:{"items":{},"date":""}});
   const [quickAddItems,setQuickAddItems] = useState(JSON.parse(sessionStorage.getItem("quick_add")) || {})
   const [currentList,setList] = useState(0);
-
 
   useEffect(() => {
       sessionStorage.setItem("data",JSON.stringify(listItems))

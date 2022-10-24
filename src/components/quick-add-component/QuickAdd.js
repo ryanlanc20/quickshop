@@ -8,10 +8,10 @@ const QuickAdd = () => {
     const [currentList,] = useContext(CurrentListContext);
     const [quickAddItems,setQuickAddItems] = useContext(QuickAddListContext);
 
-    const createItem = (itemName,itemPricePounds,itemPricePennies) => {
+    const createItem = (itemName,firstCurrencyUnit,secondCurrencyUnit) => {
         let numItems = Object.keys(items[currentList]["items"]).length;
         let newCollection = {...items};
-        newCollection[currentList]["items"][numItems] = {id:numItems,itemName:itemName,firstCurrencyUnit:itemPricePounds,secondCurrencyUnit:itemPricePennies,qty:0};
+        newCollection[currentList]["items"][numItems] = {id:numItems,itemName:itemName,firstCurrencyUnit:firstCurrencyUnit,secondCurrencyUnit:secondCurrencyUnit,qty:0};
         setItems(newCollection);
     };
 

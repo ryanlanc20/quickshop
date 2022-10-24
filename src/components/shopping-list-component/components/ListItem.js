@@ -62,10 +62,32 @@ const ListItem = (props) => {
 
     return(
         <tr className={status ? "alert-danger" : ""}>
-            <td><EditableTextField text={props.itemName} id={props.id} updateCallback={updateName}/></td>
-            <td><PriceSelector firstCurrencyUnit={props.firstCurrencyUnit} secondCurrencyUnit={props.secondCurrencyUnit} changeFirstCurrencyUnit={updateFirstCurrencyUnit} changeSecondCurrencyUnit={updateSecondCurrencyUnit}/></td>
-            <td><QuantityEditor qty={props.qty} updateCallback={updateQty}/></td>
-            <td><DeleteButton deleteCallback={deleteItem}></DeleteButton></td>
+            <td>
+                <EditableTextField
+                    text={props.itemName}
+                    id={props.id}
+                    updateCallback={updateName}
+                />
+            </td>
+            <td>
+                <PriceSelector
+                    firstCurrencyUnit={props.firstCurrencyUnit}
+                    secondCurrencyUnit={props.secondCurrencyUnit}
+                    changeFirstCurrencyUnit={updateFirstCurrencyUnit}
+                    changeSecondCurrencyUnit={updateSecondCurrencyUnit}
+                />
+            </td>
+            <td>
+                <QuantityEditor
+                    qty={props.qty}
+                    updateCallback={updateQty}
+                />
+            </td>
+            <td>
+                <DeleteButton
+                    deleteCallback={deleteItem}
+                />
+            </td>
         </tr>
     );
 };

@@ -37,7 +37,9 @@ const ListSwitcher = () => {
             <div class="row">
                 <div class="col-md-2">
                     <div className="list-switcher-control container">
-                        <BackButton decrementCallback={decrementListNum}/>
+                        <BackButton
+                            decrementCallback={decrementListNum}
+                        />
                     </div>
                 </div>
                 <div class="col-md-8">
@@ -68,7 +70,9 @@ const ListSwitcher = () => {
                 </div>
                 <div class="col-md-2">
                     <div className="list-switcher-control container">
-                        <ForwardButton incrementCallback={incrementListNum}/>
+                        <ForwardButton
+                            incrementCallback={incrementListNum}
+                        />
                     </div>
                 </div>
             </div>

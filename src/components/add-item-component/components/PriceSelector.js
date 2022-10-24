@@ -1,15 +1,11 @@
 const PriceSelector = (props) => {
     
-    // TODO: Prevent user from enter nothing and ensure proper formatting.
-
-    // Helper function to update first currency unit value in AddItem context
+    // Callback function to update first currency unit value in AddItem context
     const updateFirstCurrencyUnit = (e) => {
         props.changeFirstCurrencyUnit(e.target.value);
     };
-
-    // TODO: Prevent user from enter nothing and ensure proper formatting.
     
-    // Helper function to update second currency unit value in AddItem context
+    // Callback function to update second currency unit value in AddItem context
     const updateSecondCurrencyUnit = (e) => {
         props.changeSecondCurrencyUnit(e.target.value);
     };
