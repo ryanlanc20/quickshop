@@ -1,9 +1,17 @@
 import {useState} from "react";
 
 const EditableTextField = (props) => {
+
+    /*
+        State hook to manage text field focus.
+        ==========================================================================
+        If label is clicked, state is set to true and a textbox is displayed.
+        If the textbox is blurred (user clicks on an element outside), state is
+        set to false and a label is displayed.
+    */
     const [focused,setFocus] = useState(false);
 
-    // Event handling
+    // Callback to handle keyboard input
     const handleTyping = (e) => {
         props.updateCallback(e.target.value);
     };

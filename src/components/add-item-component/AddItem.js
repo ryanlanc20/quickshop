@@ -32,32 +32,56 @@ const AddItem = (props) => {
     const [quickAddItems,setQuickAddItems] = useContext(QuickAddListContext);
 
     const addQuickAddItem = (itemName,firstUnitCurrency,secondUnitCurrency) => {
+
+        // Copy collection (to force state update)
         let items = {...quickAddItems};
+
+        // Add 'quick add' item
         items[itemName] = {"firstCurrencyUnit":firstUnitCurrency,"secondCurrencyUnit":secondUnitCurrency};
+
+        // Return collection to global storage
         setQuickAddItems(items);
     };
 
     const createItem = () => {
+
+        // Validate item name
         if (itemNameValidator(itemName))
         {
             setStatus({"msg":"Item name cannot be of length 0"})
             return;
         }
+
+        // Validate first currency field
         if (!WholeNumberValidator(firstUnitCurrency))
         {
             setStatus({"msg": "First currency unit field must contain a whole number."})
             return;
         }
+
+        // Validate second currency field
         if (!fractionalValidator(secondUnitCurrency))
         {
             setStatus({"msg": "Second currency unit field must contain a whole number."});
             return;
         }
+
+        // Get shopping list item count
         let numItems = Object.keys(items[currentList]["items"]).length;
+
+        // Copy collection (for force state update)
         let newCollection = {...items};
+
+        // Add item to collection
         newCollection[currentList]["items"][numItems] = {id:numItems,itemName:itemName,"firstCurrencyUnit":parseInt(firstUnitCurrency),"secondCurrencyUnit":parseInt(secondUnitCurrency),qty:0};
+        
+        // Add 'quick add' item
         addQuickAddItem(itemName,parseInt(firstUnitCurrency),parseInt(secondUnitCurrency));
+
+        // Return collection to global storage
         setItems(newCollection);
+
+        // Turn off error messages
         setStatus(null);
     };
 

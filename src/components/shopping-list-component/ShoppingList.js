@@ -4,9 +4,14 @@ import {useContext,useMemo} from "react";
 import { ShoppingListContext, CurrentListContext} from "../../App.js";
 
 const ShoppingList = (props) => {
+
+    // Get reference to shopping lists
     const [items,] = useContext(ShoppingListContext);
+
+    // Get reference to current list index
     const [currentList,] = useContext(CurrentListContext);
 
+    // Calculate totalCost using useMemo to prevent unneccessary calculations on re-render.
     const totalCost = useMemo(
         () => {
             return Object.values(items[currentList]["items"]).map((item) => {

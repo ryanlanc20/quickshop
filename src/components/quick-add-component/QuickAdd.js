@@ -4,14 +4,26 @@ import {useContext} from "react";
 
 const QuickAdd = () => {
 
+    // Reference to shopping lists
     const [items,setItems] = useContext(ShoppingListContext);
+
+    // Reference to current list index
     const [currentList,] = useContext(CurrentListContext);
+
+    // Reference to quick add items
     const [quickAddItems,setQuickAddItems] = useContext(QuickAddListContext);
 
     const createItem = (itemName,firstCurrencyUnit,secondCurrencyUnit) => {
+        // Get list count
         let numItems = Object.keys(items[currentList]["items"]).length;
+
+        // Copy list items (to force state update)
         let newCollection = {...items};
+
+        // Add 'quick add' item
         newCollection[currentList]["items"][numItems] = {id:numItems,itemName:itemName,firstCurrencyUnit:firstCurrencyUnit,secondCurrencyUnit:secondCurrencyUnit,qty:0};
+        
+        // Return collection to global storage
         setItems(newCollection);
     };
 

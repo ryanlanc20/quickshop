@@ -1,11 +1,13 @@
 
 const QuantityEditor = (props) => {
 
+    // Callback for decrement counter, abiding by constraint >= 0
     const decrement = () => {
         if (props.qty > 0)
             props.updateCallback(props.qty-1);
     };
 
+    // Callback for increment counter
     const increment = () => {
         props.updateCallback(props.qty+1);
     };

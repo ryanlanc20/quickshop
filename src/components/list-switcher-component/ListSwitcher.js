@@ -4,30 +4,51 @@ import {useState,useContext} from "react";
 import {ShoppingListContext,CurrentListContext} from "../../App.js";
 
 const ListSwitcher = () => {
+
+    // Reference to shopping lists
     const [listNum,setListNum] = useContext(CurrentListContext)
+
+    // Reference to current list index
     const [items,setItems] = useContext(ShoppingListContext);
 
     const incrementListNum = () => {
+
+        // Create new list if index is not present in items list
         if(!(listNum+1 in Object.keys(items)))
         {
+            // Copy list items (to force state update)
             let listItems = {...items};
+
+            // Add new shopping list
             listItems[listNum+1] = {"items":{},"date":""};
+
+            // Return collection to global storage
             setItems(listItems);
         }
+
+        // Set selected list index
         setListNum((currListNum) => {return currListNum + 1})
     };
 
     const decrementListNum = () => {
+        // Only decrease list index if > 0
         if (listNum > 0)
             setListNum((currListNum) => {return currListNum - 1})
     };
 
     const updateDate = (e) => {
         console.log(e.target.value);
+
+        // Only update date if list is selected
         if (listNum in Object.keys(items))
         {
+            // Copy collection (to force state update)
             let listItems = {...items};
+
+            // Update the date
             listItems[listNum]["date"] = e.target.value;
+
+            // Return collection to global storage
             setItems(listItems);
         }
     };
