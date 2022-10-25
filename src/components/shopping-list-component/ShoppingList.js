@@ -15,8 +15,8 @@ const ShoppingList = (props) => {
     const totalCost = useMemo(
         () => {
             return Object.values(items[currentList]["items"]).map((item) => {
-                return Math.round(((item.firstCurrencyUnit+ (item.secondCurrencyUnit/100)) * item.qty)*100) / 100
-            }).reduce((previous,current) => previous + current,0).toFixed(2)
+                return (item.firstCurrencyUnit + (item.secondCurrencyUnit/100.0)) * item.qty;
+            }).reduce((previous,current) => previous + current,0).toFixed(2);
         },
         [items,currentList]
     );

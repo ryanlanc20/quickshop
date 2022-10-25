@@ -32,7 +32,7 @@ function App() {
   const [listItems,setItems] = useState(JSON.parse(sessionStorage.getItem("data"))||{0:{"items":{},"date":""}});
 
   // Load quick add items
-  const [quickAddItems,setQuickAddItems] = useState(JSON.parse(sessionStorage.getItem("quick_add")) || {})
+  const [quickAddItems,setQuickAddItems] = useState(JSON.parse(sessionStorage.getItem("quick_add")) || {});
 
   // Set default list index
   const [currentList,setList] = useState(0);
