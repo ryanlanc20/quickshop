@@ -1,6 +1,6 @@
 import BackButton from "./components/BackButton.js";
 import ForwardButton from "./components/ForwardButton.js";
-import {useState,useContext} from "react";
+import {useContext} from "react";
 import {ShoppingListContext,CurrentListContext} from "../../App.js";
 
 const ListSwitcher = () => {
@@ -37,7 +37,6 @@ const ListSwitcher = () => {
     };
 
     const updateDate = (e) => {
-        console.log(e.target.value);
 
         // Only update date if list is selected
         if (listNum in Object.keys(items))
@@ -81,7 +80,7 @@ const ListSwitcher = () => {
 
                             </div>
                             <div class="col-md-8 text-center">
-                                <input type="date" id="birthday" name="birthday" className="form-control picker__input" onChange={updateDate} value={items[listNum]["date"]||""}></input>
+                                <input type="date" className="form-control picker__input" onChange={updateDate} value={items[listNum]["date"]||""}></input>
                             </div>
                             <div class="col-md-2">
 

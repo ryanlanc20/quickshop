@@ -1,8 +1,7 @@
-import {useState} from "react";
+import {useContext, useState} from "react";
 import AddItemButton from "./components/AddItemButton.js";
 import TextField from "./components/TextField.js";
 import PriceSelector from "./components/PriceSelector.js";
-import {useContext} from "react";
 import { ShoppingListContext, CurrentListContext, QuickAddListContext} from "../../App.js";
 import WholeNumberValidator from "../../validators/WholeNumberValidator.js";
 import itemNameValidator from "../../validators/ItemNameValidator.js";
@@ -69,7 +68,7 @@ const AddItem = (props) => {
         // Get shopping list item count
         let numItems = Object.keys(items[currentList]["items"]).length;
 
-        // Copy collection (for force state update)
+        // Copy collection (to force state update)
         let newCollection = {...items};
 
         // Add item to collection

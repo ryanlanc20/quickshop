@@ -11,7 +11,7 @@ const QuickAdd = () => {
     const [currentList,] = useContext(CurrentListContext);
 
     // Reference to quick add items
-    const [quickAddItems,setQuickAddItems] = useContext(QuickAddListContext);
+    const [quickAddItems,] = useContext(QuickAddListContext);
 
     const createItem = (itemName,firstCurrencyUnit,secondCurrencyUnit) => {
         // Get list count

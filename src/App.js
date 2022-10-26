@@ -28,7 +28,7 @@ export const QuickAddListContext = createContext();
     App component
 */
 function App() {
-  // Load shopping lists from local storage or create new
+  // Load shopping lists from local storage or create new storage object if absent
   const [listItems,setItems] = useState(JSON.parse(sessionStorage.getItem("data"))||{0:{"items":{},"date":""}});
 
   // Load quick add items
