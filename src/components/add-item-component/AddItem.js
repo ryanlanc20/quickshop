@@ -6,7 +6,7 @@ import { ShoppingListContext, CurrentListContext, QuickAddListContext} from "../
 import WholeNumberValidator from "../../validators/WholeNumberValidator.js";
 import itemNameValidator from "../../validators/ItemNameValidator.js";
 import fractionalValidator from "../../validators/FractionalValidator.js";
-
+import * as uuid from "uuid";
 const AddItem = (props) => {
     
     // Status hook for displaying error messages
@@ -65,14 +65,14 @@ const AddItem = (props) => {
             return;
         }
 
-        // Get shopping list item count
-        let numItems = Object.keys(items[currentList]["items"]).length;
-
         // Copy collection (to force state update)
         let newCollection = {...items};
 
+        // Get UUID for new list item
+        let itemId = uuid.v4();
+
         // Add item to collection
-        newCollection[currentList]["items"][numItems] = {id:numItems,itemName:itemName,"firstCurrencyUnit":parseInt(firstUnitCurrency),"secondCurrencyUnit":parseInt(secondUnitCurrency),qty:0};
+        newCollection[currentList]["items"][itemId] = {id:itemId,itemName:itemName,"firstCurrencyUnit":parseInt(firstUnitCurrency),"secondCurrencyUnit":parseInt(secondUnitCurrency),qty:0};
         
         // Add 'quick add' item
         addQuickAddItem(itemName,parseInt(firstUnitCurrency),parseInt(secondUnitCurrency));

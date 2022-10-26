@@ -1,6 +1,6 @@
 import { ShoppingListContext, CurrentListContext, QuickAddListContext} from "../../App.js";
 import {useContext} from "react";
-
+import * as uuid from "uuid";
 
 const QuickAdd = () => {
 
@@ -14,14 +14,15 @@ const QuickAdd = () => {
     const [quickAddItems,] = useContext(QuickAddListContext);
 
     const createItem = (itemName,firstCurrencyUnit,secondCurrencyUnit) => {
-        // Get list count
-        let numItems = Object.keys(items[currentList]["items"]).length;
 
         // Copy list items (to force state update)
         let newCollection = {...items};
 
+        // Get UUID for new list item
+        let itemId = uuid.v4();
+
         // Add 'quick add' item
-        newCollection[currentList]["items"][numItems] = {id:numItems,itemName:itemName,firstCurrencyUnit:firstCurrencyUnit,secondCurrencyUnit:secondCurrencyUnit,qty:0};
+        newCollection[currentList]["items"][itemId] = {id:itemId,itemName:itemName,firstCurrencyUnit:firstCurrencyUnit,secondCurrencyUnit:secondCurrencyUnit,qty:0};
         
         // Return collection to global storage
         setItems(newCollection);
