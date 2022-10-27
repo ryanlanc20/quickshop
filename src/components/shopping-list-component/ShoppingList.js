@@ -45,32 +45,34 @@ const ShoppingList = (props) => {
                     </div>
                 </div>
                 <div className="card-body">
-                <table className="table table-light">
-                    <thead>
-                        <tr>
-                        <th>Item name</th>
-                        <th>Item price</th>
-                        <th>Item Qty.</th>
-                        <th>Options</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                    {
-                        Object.keys(items[currentList]["items"]).map(id => 
-                            (
-                                <ListItem 
-                                    key={items[currentList]["items"][id].id} 
-                                    id={items[currentList]["items"][id].id} 
-                                    itemName={items[currentList]["items"][id].itemName} 
-                                    firstCurrencyUnit={items[currentList]["items"][id].firstCurrencyUnit} 
-                                    secondCurrencyUnit={items[currentList]["items"][id].secondCurrencyUnit} 
-                                    qty={items[currentList]["items"][id].qty}
-                                />
-                            )
-                        )
-                    }
-                    </tbody>
-                </table>
+                    <div className="table-responsive">
+                        <table className="table table-light">
+                            <thead>
+                                <tr>
+                                <th>Item name</th>
+                                <th>Item price</th>
+                                <th>Item Qty.</th>
+                                <th>Options</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            {
+                                Object.keys(items[currentList]["items"]).map(id => 
+                                    (
+                                        <ListItem 
+                                            key={items[currentList]["items"][id].id} 
+                                            id={items[currentList]["items"][id].id} 
+                                            itemName={items[currentList]["items"][id].itemName} 
+                                            firstCurrencyUnit={items[currentList]["items"][id].firstCurrencyUnit} 
+                                            secondCurrencyUnit={items[currentList]["items"][id].secondCurrencyUnit} 
+                                            qty={items[currentList]["items"][id].qty}
+                                        />
+                                    )
+                                )
+                            }
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
                 <div className="card-footer">
                     <div class="row">
