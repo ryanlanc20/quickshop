@@ -2,6 +2,10 @@
 
 Quickshop is designed to simplify shopping, by providing you with a convenient way to create, manipulate and store all future shopping lists. You can change the price and quantity of items, and Quickshop automatically recalculates the total cost of your shop. Quickshop allows you to create shopping lists for multiple weeks, and provides a list switcher feature so that you can seamlessly navigate between them. Don't want to repetitively enter the same items for each week? Every time you add a unique item (with a unique name) to your list, Quickshop adds the item to the quick add section, so that you can add recurring items with the click of a button in the future.
 
+Live demo: https://ryanlanc20.github.io/quickshop/
+
+Note: The app currently uses browser session storage, so your data will likely be erased when leaving the webpage.
+
 # Development information
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
